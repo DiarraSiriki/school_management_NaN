@@ -1,7 +1,7 @@
 import { createTeacher, updateTeacher, deleteTeacher, findTeacher, getAllTeachers } from '../models/teacherModel.js';
 import logger from '../utils/logger.js';
 
-// ─── Fonctions utilitaires ───────────────────────────────────────────────────
+// Fonctions utilitaires de tet
 
 function validerChamps(nom, matiere) {
   if (!nom    || nom.trim()    === '') return 'Le nom ne peut pas être vide.';
@@ -9,7 +9,7 @@ function validerChamps(nom, matiere) {
   return null;
 }
 
-// ─── Service ─────────────────────────────────────────────────────────────────
+//  teacherService
 
 const teacherService = {
 
@@ -56,12 +56,12 @@ const teacherService = {
       return { success: false, message: `Aucun professeur trouvé avec l'ID ${id}.` };
     }
 
-    // ⚠️ Vérification matières liées — à compléter quand subjectModel sera disponible
-    // const matieres = getSubjectsByTeacher(id);
-    // if (matieres.length > 0) {
-    //   logger.warning(`Suppression échouée : professeur ID ${id} a ${matieres.length} matière(s) liée(s)`);
-    //   return { success: false, message: 'Impossible de supprimer : ce professeur a des matières liées.' };
-    // }
+    //  Vérification matières liées — à compléter quand subjectModel sera disponible
+    const matieres = getSubjectsByTeacher(id);
+    if (matieres.length > 0) {
+      logger.warning(`Suppression échouée : professeur ID ${id} a ${matieres.length} matière(s) liée(s)`);
+      return { success: false, message: 'Impossible de supprimer : ce professeur a des matières liées.' };
+    }
 
     deleteTeacher(id);
     logger.info(`Professeur supprimé : ID ${id}`);

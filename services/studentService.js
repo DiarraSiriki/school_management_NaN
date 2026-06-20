@@ -18,7 +18,7 @@ function validerChamps(nom, prenom, age) {
   return null;
 }
 
-// ─── Service ─────────────────────────────────────────────────────────────────
+// studentService 
 
 const studentService = {
 

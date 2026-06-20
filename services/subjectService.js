@@ -2,7 +2,7 @@ import { createSubject, assignTeacher, getAllSubjects } from '../models/subjectM
 import { findTeacher } from '../models/teacherModel.js';
 import logger from '../utils/logger.js';
 
-// ─── Service ─────────────────────────────────────────────────────────────────
+// subjectService 
 
 const subjectService = {
 
@@ -13,6 +13,7 @@ const subjectService = {
     }
 
     // Vérifier unicité
+    
     const toutes = getAllSubjects();
     const existe = toutes.find(s => s.nom.toLowerCase() === nom.trim().toLowerCase());
     if (existe) {
